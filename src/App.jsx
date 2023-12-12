@@ -1,13 +1,19 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+import { GlobalStyle } from './styles/GlobalStyles';
 import Root from './ui/Root';
 import Error from './ui/Error';
 import Home from './pages/Home';
 import Results from './pages/Results';
 import Watch from './pages/Watch';
 
-import { GlobalStyle } from './styles/GlobalStyles';
+// day.js 組件
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/zh-tw';
+dayjs.locale('zh-tw');
+dayjs.extend(relativeTime);
 
 const queryClient = new QueryClient();
 
