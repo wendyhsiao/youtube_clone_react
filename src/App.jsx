@@ -4,6 +4,7 @@ import Error from './ui/Error';
 import Home from './pages/Home';
 import Results from './pages/Results';
 import Watch from './pages/Watch';
+import { NormalizeStyles } from './styles/GlobalStyles';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <NormalizeStyles />
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
