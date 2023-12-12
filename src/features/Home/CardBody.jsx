@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
 
 import MoreIcon from '../../assets/icons/more.svg?react';
+import { countFormat } from '../../utils/helpers';
 
 const StyledCardBody = styled.div`
   display: flex;
@@ -46,17 +48,22 @@ const Button = styled.button`
   background: none;
 `;
 
-function CardBody() {
+function CardBody({ video }) {
+  const { thumbnails, title, channelTitle, publishedAt } = video.snippet;
+
   return (
     <StyledCardBody>
       <Avatar>
-        <AvatarImg />
+        <AvatarImg src={thumbnails.high.url} />
       </Avatar>
 
-      <StyledLink to={`/watch?v=XXX`}>
-        <StyledTitle>Title</StyledTitle>
-        <div>Channel Title</div>
-        <span>觀看次數：XX次 • XX天前</span>
+      <StyledLink to={`/watch?v=${video.id}`}>
+        <StyledTitle>{title}</StyledTitle>
+        <div>{channelTitle}</div>
+        <span>
+          觀看次數：{countFormat(video.statistics.viewCount)}次 •{' '}
+          {dayjs(publishedAt).fromNow()}
+        </span>
       </StyledLink>
 
       <Button>

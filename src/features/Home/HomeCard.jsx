@@ -4,7 +4,7 @@ import {
   MEDIA_QUERY_LG,
   MEDIA_QUERY_MD,
   MEDIA_QUERY_SM,
-} from '../../constants/breakpoint';
+} from '../../utils/constants';
 
 import CardBody from './CardBody';
 
