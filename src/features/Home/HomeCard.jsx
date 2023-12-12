@@ -40,19 +40,19 @@ const CardImg = styled.img`
   width: 100%;
   position: absolute;
   top: 50%;
-  transform: translate(-50%);
+  transform: translateY(-50%);
 `;
 
-function HomeCard() {
+function HomeCard({ video }) {
   return (
     <Li>
-      <Link>
+      <Link to={`/watch?v=${video.id}`}>
         <CardTop>
-          <CardImg />
+          <CardImg src={video.snippet.thumbnails.high.url} />
         </CardTop>
-
-        <CardBody />
       </Link>
+
+      <CardBody video={video} />
     </Li>
   );
 }
