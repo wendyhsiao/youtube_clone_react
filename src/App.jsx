@@ -4,7 +4,7 @@ import Error from './ui/Error';
 import Home from './pages/Home';
 import Results from './pages/Results';
 import Watch from './pages/Watch';
-import { NormalizeStyles } from './styles/GlobalStyles';
+import { GlobalStyle } from './styles/GlobalStyles';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <NormalizeStyles />
+      <GlobalStyle />
       <RouterProvider router={router} />
     </>
   );
