@@ -6,6 +6,7 @@ import ReportIcon from '../../assets/icons/report.svg?react';
 import SpecBtnIcon from '../../assets/icons/spec-btn.svg?react';
 import LikeIcon from '../../assets/icons/like.svg?react';
 import DislikeIcon from '../../assets/icons/dislike.svg?react';
+import { MEDIA_QUERY_LG } from '../../utils/constants';
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -28,6 +29,10 @@ const Button = styled.button`
   border-radius: 18px;
   background-color: #f2f2f2;
   cursor: pointer;
+
+  ${MEDIA_QUERY_LG} {
+    ${(props) => props.hidden === 'lg' && `display: none`}
+  }
 `;
 
 const EndButton = styled(Button)`
@@ -88,12 +93,12 @@ function ChannelButtonGroup() {
         <span>分享</span>
       </Button>
 
-      <Button>
+      <Button hidden="lg">
         <SaveIcon />
         <span>儲存</span>
       </Button>
 
-      <Button>
+      <Button hidden="lg">
         <ReportIcon />
         <span>檢舉</span>
       </Button>

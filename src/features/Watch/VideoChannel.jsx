@@ -42,7 +42,7 @@ const AvatarImg = styled.img`
 `;
 
 const Button = styled.button`
-  margin-left: 0%.5;
+  margin-left: 0.5rem;
   padding: 0 16px;
   height: 2.25rem;
   border-radius: 18px;
