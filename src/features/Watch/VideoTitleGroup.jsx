@@ -32,7 +32,7 @@ const ReadMoreSpan = styled.span`
   cursor: pointer;
 `;
 
-function VideoTitleGroup({ video }) {
+function VideoTitleGroup({ video, titleGroupRef }) {
   return (
     <>
       <StyledTitleGroupMobile>
@@ -44,7 +44,7 @@ function VideoTitleGroup({ video }) {
         <ReadMoreSpan>...更多內容</ReadMoreSpan>
       </StyledTitleGroupMobile>
 
-      <StyledTitleGroup>
+      <StyledTitleGroup ref={titleGroupRef}>
         <StyledTitle>{video.snippet.title}</StyledTitle>
       </StyledTitleGroup>
     </>

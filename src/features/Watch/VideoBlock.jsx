@@ -1,5 +1,7 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { MEDIA_QUERY_MD } from '../../utils/constants';
+
 import VideoIframe from './VideoIframe';
 import VideoDescription from './VideoDescription';
 import VideoTitleGroup from './VideoTitleGroup';
@@ -18,15 +20,16 @@ const VideoWarp = styled.div`
 `;
 
 function VideoBlock({ video }) {
+  const titleGroupRef = useRef(null);
   return (
     <>
       <VideoWarp>
         <VideoIframe id={video.id} />
       </VideoWarp>
 
-      <VideoTitleGroup video={video} />
+      <VideoTitleGroup video={video} titleGroupRef={titleGroupRef} />
       <VideoChannel video={video} />
-      <VideoDescription video={video} />
+      <VideoDescription video={video} titleGroupRef={titleGroupRef} />
     </>
   );
 }
