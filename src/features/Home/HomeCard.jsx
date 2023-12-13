@@ -8,7 +8,7 @@ import {
 
 import CardBody from './CardBody';
 
-const Li = styled.li`
+const Card = styled.li`
   width: 100%;
   padding: 0 0.5rem;
   flex-shrink: 0;
@@ -45,7 +45,7 @@ const CardImg = styled.img`
 
 function HomeCard({ video }) {
   return (
-    <Li>
+    <Card>
       <Link to={`/watch?v=${video.id}`}>
         <CardTop>
           <CardImg src={video.snippet.thumbnails.high.url} />
@@ -53,7 +53,7 @@ function HomeCard({ video }) {
       </Link>
 
       <CardBody video={video} />
-    </Li>
+    </Card>
   );
 }
 

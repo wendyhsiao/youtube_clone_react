@@ -61,7 +61,7 @@ function CardBody({ video }) {
         <StyledTitle>{title}</StyledTitle>
         <div>{channelTitle}</div>
         <span>
-          觀看次數：{countFormat(video.statistics.viewCount)}次 •{' '}
+          觀看次數：{countFormat(video.statistics.viewCount)}次 •
           {dayjs(publishedAt).fromNow()}
         </span>
       </StyledLink>
