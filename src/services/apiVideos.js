@@ -35,3 +35,17 @@ export async function getResultVideos(searchQuery, nextPageToken) {
 
   return data;
 }
+
+export async function getVideo(vidoId) {
+  const searchParams = {
+    id: vidoId,
+    key: import.meta.env.VITE_REACT_APP_YT_API_KEY,
+    part: 'snippet,statistics',
+  };
+
+  const searchURL = new URLSearchParams(searchParams);
+  const { data } = await apiHelper.get(`videos?${searchURL.toString()}`);
+  // const { data } = await apiFake.get('fetchVideo');
+
+  return data;
+}
