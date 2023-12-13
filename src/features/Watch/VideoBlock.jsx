@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { MEDIA_QUERY_MD } from '../../utils/constants';
 import VideoIframe from './VideoIframe';
+import VideoDescription from './VideoDescription';
+import VideoTitleGroup from './VideoTitleGroup';
+import VideoChannel from './VideoChannel';
 
 const VideoWarp = styled.div`
   position: fixed;
@@ -16,9 +19,15 @@ const VideoWarp = styled.div`
 
 function VideoBlock() {
   return (
-    <VideoWarp>
-      <VideoIframe />
-    </VideoWarp>
+    <>
+      <VideoWarp>
+        <VideoIframe />
+      </VideoWarp>
+
+      <VideoTitleGroup />
+      <VideoChannel />
+      <VideoDescription />
+    </>
   );
 }
 
