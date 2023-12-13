@@ -3,6 +3,7 @@ import { useWatch } from '../features/Watch/useWatch';
 import { MEDIA_QUERY_MD } from '../utils/constants';
 import VideoBlock from '../features/Watch/VideoBlock';
 import VideoCommentList from '../features/Watch/VideoCommentList';
+import WatchSidebar from '../features/Watch/WatchSidebar';
 
 const WatchLayout = styled.div`
   margin: 0 auto;
@@ -34,6 +35,8 @@ function Watch() {
         <VideoBlock />
         <VideoCommentList />
       </WatchMain>
+
+      <WatchSidebar />
     </WatchLayout>
   );
 }
