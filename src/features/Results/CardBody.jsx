@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
+
 import { MEDIA_QUERY_MD } from '../../utils/constants';
 import MoreIcon from '../../assets/icons/more.svg?react';
-import { Link } from 'react-router-dom';
 
 const StyledCardBody = styled.div`
   display: flex;
@@ -97,18 +99,21 @@ const Description = styled.div`
   }
 `;
 
-function CardBody() {
+function CardBody({ video }) {
   return (
     <StyledCardBody>
       <Avatar>
-        <AvatarImg />
+        <AvatarImg src={video.snippet.thumbnails.default.url} />
       </Avatar>
 
       <TextGroup>
         <StyledLink>
-          <StyledTitle>Title</StyledTitle>
-          <ChannelTitleMobile>channelTitle</ChannelTitleMobile>
-          <span>觀看次數：XXX次 • X天前</span>
+          <StyledTitle>{video.snippet.title}</StyledTitle>
+          <ChannelTitleMobile>{video.snippet.channelTitle}</ChannelTitleMobile>
+          <span>
+            {/* 觀看次數：{countFormat(video.statistics.viewCount)}次 • */}
+            {dayjs(video.snippet.publishedAt).fromNow()}
+          </span>
         </StyledLink>
 
         <Button>
@@ -118,12 +123,12 @@ function CardBody() {
 
       <Channel>
         <AvatarMobile>
-          <AvatarImg />
+          <AvatarImg src={video.snippet.thumbnails.default.url} />
         </AvatarMobile>
-        <span>channelTitle</span>
+        <span>{video.snippet.channelTitle}</span>
       </Channel>
 
-      <Description>description dexcription dexcription</Description>
+      <Description>{video.snippet.description}</Description>
     </StyledCardBody>
   );
 }

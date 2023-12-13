@@ -19,14 +19,15 @@ function Results() {
   // console.log('videos', videos, videos?.etag);
 
   if (!videos?.etag) return <p>no data</p>;
-
+  const { items } = videos ?? [];
   nextPageTokenRef.current = videos.nextPageToken;
 
   return (
     <Contents>
       <List>
-        <ResultsCard />
-        <ResultsCard />
+        {items.map((video) => (
+          <ResultsCard video={video} key={video.etag} />
+        ))}
       </List>
     </Contents>
   );

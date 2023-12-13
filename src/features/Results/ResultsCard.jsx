@@ -18,7 +18,6 @@ const Card = styled.li`
   flex-direction: column;
   gap: 0.5rem;
   list-style: none;
-  background-color: gray;
 
   ${MEDIA_QUERY_MD} {
     flex-direction: row;
@@ -41,16 +40,16 @@ const CardImg = styled.img`
   transform: translateY(-50%);
 `;
 
-function ResultsCard() {
+function ResultsCard({ video }) {
   return (
     <Card>
-      <StyledLink to={`/watch?v=XXX`}>
+      <StyledLink to={`/watch?v=${video.id.videoId}`}>
         <CardTop>
-          <CardImg />
+          <CardImg src={video.snippet.thumbnails.high.url} />
         </CardTop>
       </StyledLink>
 
-      <CardBody />
+      <CardBody video={video} />
     </Card>
   );
 }
