@@ -3,6 +3,7 @@ import { useRelated } from './useRelated';
 
 import { MEDIA_QUERY_MD } from '../../utils/constants';
 import VideoCard from './VideoCard';
+import Spinner from '../../ui/Spinner';
 
 const Sidebar = styled.aside`
   padding: 0 12px;
@@ -31,6 +32,8 @@ function WatchSidebar() {
           <VideoCard video={video} key={video.etag} />
         ))}
       </ul>
+
+      <Spinner />
     </Sidebar>
   );
 }
