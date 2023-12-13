@@ -17,16 +17,16 @@ const VideoWarp = styled.div`
   }
 `;
 
-function VideoBlock() {
+function VideoBlock({ video }) {
   return (
     <>
       <VideoWarp>
-        <VideoIframe />
+        <VideoIframe id={video.id} />
       </VideoWarp>
 
-      <VideoTitleGroup />
-      <VideoChannel />
-      <VideoDescription />
+      <VideoTitleGroup video={video} />
+      <VideoChannel video={video} />
+      <VideoDescription video={video} />
     </>
   );
 }

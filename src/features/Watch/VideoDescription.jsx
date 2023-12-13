@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { MEDIA_QUERY_MD } from '../../utils/constants';
+import { countFormat, descriptionFormat } from '../../utils/helpers';
+import dayjs from 'dayjs';
 
 const Wrapper = styled.div`
   display: none;
@@ -20,6 +22,10 @@ const Description = styled.div`
   white-space: pre-wrap;
   overflow-wrap: break-word;
 
+  a {
+    color: #065fd4;
+  }
+
   /* overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -30,11 +36,16 @@ const Button = styled.button`
   border: 0;
 `;
 
-function VideoDescription() {
+function VideoDescription({ video }) {
   return (
     <Wrapper>
-      <span>觀看次數：XXX次 · X天前</span>
-      <Description>XXXXX</Description>
+      <span>
+        觀看次數：{countFormat(video.statistics.viewCount)}次 ·{' '}
+        {dayjs(video.snippet.publishedAt).fromNow()}
+      </span>
+      <Description
+        dangerouslySetInnerHTML={descriptionFormat(video.snippet.description)}
+      ></Description>
       <Button>顯示完整資訊</Button>
       {/* 只顯示部分資訊 */}
     </Wrapper>

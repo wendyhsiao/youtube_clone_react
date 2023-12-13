@@ -50,17 +50,17 @@ const Button = styled.button`
   background-color: black;
 `;
 
-function VideoChannel() {
+function VideoChannel({ video }) {
   return (
     <StyledVideoChannel>
       <ChannelIntro>
         <Intro>
           <Avatar>
-            <AvatarImg />
+            <AvatarImg src={video.snippet.thumbnails?.default?.url} />
           </Avatar>
 
           <div>
-            <h3>channel title</h3>
+            <h3>{video.snippet.channelTitle}</h3>
             <span>XX萬 位訂閱者</span>
           </div>
         </Intro>
@@ -68,7 +68,7 @@ function VideoChannel() {
         <Button>訂閱</Button>
       </ChannelIntro>
 
-      <ChannelButtonGroup />
+      <ChannelButtonGroup video={video} />
     </StyledVideoChannel>
   );
 }

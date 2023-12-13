@@ -27,12 +27,15 @@ const WatchMain = styled.main`
 
 
 function Watch() {
-  const { isLoading, videos, error } = useWatch();
+  const { isLoading, video, error } = useWatch();
+
+  const { items } = video ?? [];
+  if (!video?.etag) return <p>no data</p>;
 
   return (
     <WatchLayout>
       <WatchMain>
-        <VideoBlock />
+        <VideoBlock video={items[0]} />
         <VideoCommentList />
       </WatchMain>
 

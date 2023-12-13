@@ -13,8 +13,8 @@ const StyledIframe = styled.iframe`
   height: 100%;
 `;
 
-function VideoIframe() {
-  const embedURL = `https://www.youtube.com/embed/87E0yq2EX4U`;
+function VideoIframe({ id }) {
+  const embedURL = `https://www.youtube.com/embed/${id}`;
 
   return (
     <VideoLayout>

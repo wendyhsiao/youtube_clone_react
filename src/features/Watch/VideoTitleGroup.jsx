@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { MEDIA_QUERY_MD } from '../../utils/constants';
+import { countFormat } from '../../utils/helpers';
+import dayjs from 'dayjs';
 
 const StyledTitleGroupMobile = styled.div`
   padding: 0 12px 9px;
@@ -30,17 +32,20 @@ const ReadMoreSpan = styled.span`
   cursor: pointer;
 `;
 
-function VideoTitleGroup() {
+function VideoTitleGroup({ video }) {
   return (
     <>
       <StyledTitleGroupMobile>
-        <StyledTitle>title</StyledTitle>
-        <span>觀看次數：XXX次 · X天前</span>
+        <StyledTitle>{video.snippet.title}</StyledTitle>
+        <span>
+          觀看次數：{countFormat(video.statistics.viewCount)}次 ·{' '}
+          {dayjs(video.snippet.publishedAt).fromNow()}
+        </span>
         <ReadMoreSpan>...更多內容</ReadMoreSpan>
       </StyledTitleGroupMobile>
 
       <StyledTitleGroup>
-        <StyledTitle>title</StyledTitle>
+        <StyledTitle>{video.snippet.title}</StyledTitle>
       </StyledTitleGroup>
     </>
   );

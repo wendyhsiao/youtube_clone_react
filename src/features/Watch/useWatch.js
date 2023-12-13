@@ -8,9 +8,9 @@ export function useWatch() {
 
   const {
     isLoading,
-    data: videos,
+    data: video,
     error,
   } = useQuery(['watch', videoId], () => getVideo(videoId));
 
-  return { isLoading, videos, error };
+  return { isLoading, video, error };
 }

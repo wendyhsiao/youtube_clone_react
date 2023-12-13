@@ -7,6 +7,7 @@ import SpecBtnIcon from '../../assets/icons/spec-btn.svg?react';
 import LikeIcon from '../../assets/icons/like.svg?react';
 import DislikeIcon from '../../assets/icons/dislike.svg?react';
 import { MEDIA_QUERY_LG } from '../../utils/constants';
+import { countFormat } from '../../utils/helpers';
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -31,7 +32,7 @@ const Button = styled.button`
   cursor: pointer;
 
   ${MEDIA_QUERY_LG} {
-    ${(props) => props.hidden === 'lg' && `display: none`}
+    ${({ $hide }) => $hide === 'lg' && `display: none`}
   }
 `;
 
@@ -74,13 +75,13 @@ const DislikeButton = styled.button`
   cursor: pointer;
 `;
 
-function ChannelButtonGroup() {
+function ChannelButtonGroup({ video }) {
   return (
     <ButtonGroup>
       <BeLikeButton>
         <LikeButton>
           <LikeIcon />
-          <span>XX萬</span>
+          <span>{countFormat(video.statistics.likeCount)}</span>
         </LikeButton>
 
         <DislikeButton>
@@ -93,12 +94,12 @@ function ChannelButtonGroup() {
         <span>分享</span>
       </Button>
 
-      <Button hidden="lg">
+      <Button $hide="lg">
         <SaveIcon />
         <span>儲存</span>
       </Button>
 
-      <Button hidden="lg">
+      <Button $hide="lg">
         <ReportIcon />
         <span>檢舉</span>
       </Button>
