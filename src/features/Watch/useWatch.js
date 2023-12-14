@@ -3,8 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import { getVideo } from '../../services/apiVideos';
 
 export function useWatch() {
-  const [seatchParams] = useSearchParams();
-  const videoId = seatchParams.get('v');
+  const [searchParams] = useSearchParams();
+  const videoId = searchParams.get('v');
 
   const {
     isLoading,

@@ -66,3 +66,20 @@ export async function getRelatedVideos(nextPageToken) {
 
   return data;
 }
+
+export async function getComments(videoId, nextPageToken) {
+  const searchParams = {
+    part: 'snippet,replies',
+    videoId: videoId,
+    maxResults: 40,
+    pageToken: nextPageToken,
+    key: import.meta.env.VITE_REACT_APP_YT_API_KEY,
+  };
+  const searchURL = new URLSearchParams(searchParams);
+  const { data } = await apiHelper.get(
+    `commentThreads?${searchURL.toString()}`
+  );
+  // const { data } = await apiFake.get('fetchComments');
+
+  return data;
+}
