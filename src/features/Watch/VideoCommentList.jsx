@@ -9,12 +9,17 @@ function VideoCommentList() {
   const { isLoading, comments, error } = useComments();
   console.log('comments', comments);
 
+  if (!comments?.etag) return <p>no data</p>;
+  const { items } = comments ?? [];
+
   return (
     <div>
       <CommentHeader />
 
       <ul>
-        <CommentItem />
+        {items.map((comment) => (
+          <CommentItem comment={comment} key={comment.id} />
+        ))}
       </ul>
 
       <Spinner />

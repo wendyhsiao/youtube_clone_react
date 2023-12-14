@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import LikeIcon from '../../assets/icons/like.svg?react';
 import DislikeIcon from '../../assets/icons/dislike.svg?react';
 import CommentIcon from '../../assets/icons/comment.svg?react';
+import dayjs from 'dayjs';
 
 const StyledLi = styled.li`
   display: flex;
@@ -49,33 +50,42 @@ const Button = styled.button`
   background: none;
 `;
 
-function CommentItem() {
+function CommentItem({ comment }) {
+  const {
+    authorProfileImageUrl,
+    authorDisplayName,
+    publishedAt,
+    textDisplay,
+    likeCount,
+  } = comment.snippet.topLevelComment.snippet;
+
   return (
     <StyledLi>
       <Avatar>
-        <AvatarImg />
+        <AvatarImg src={authorProfileImageUrl} />
       </Avatar>
 
       <CommentItemText>
         <ItemHeader>
-          <p>user</p>
-          <span> X 天前</span>
+          <p>{authorDisplayName} </p>
+          <span>&ensp;{dayjs(publishedAt).fromNow()}</span>
         </ItemHeader>
 
-        <ItemBody>text text text text text</ItemBody>
+        <ItemBody dangerouslySetInnerHTML={{ __html: textDisplay }}></ItemBody>
 
         <ButtonGroup>
           <Button>
             <LikeIcon />
-            <span>X</span>
+            {likeCount > 0 && <span>{likeCount}</span>}
           </Button>
           <Button>
             <DislikeIcon />
-            <span>X</span>
           </Button>
           <Button>
             <CommentIcon />
-            <span>X</span>
+            {comment.snippet.totalReplyCount > 0 && (
+              <span>{comment.snippet.totalReplyCount}</span>
+            )}
           </Button>
         </ButtonGroup>
       </CommentItemText>
