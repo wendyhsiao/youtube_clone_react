@@ -1,8 +1,10 @@
-import styled from 'styled-components';
+import { useEffect, useRef, useState } from 'react';
+import styled, { css } from 'styled-components';
+import dayjs from 'dayjs';
+
 import LikeIcon from '../../assets/icons/like.svg?react';
 import DislikeIcon from '../../assets/icons/dislike.svg?react';
 import CommentIcon from '../../assets/icons/comment.svg?react';
-import dayjs from 'dayjs';
 
 const StyledLi = styled.li`
   display: flex;
@@ -36,6 +38,15 @@ const ItemBody = styled.p`
   margin: 0 4px;
   white-space: pre-wrap;
   overflow-wrap: break-word;
+
+  ${(props) =>
+    props.$openState === 'close' &&
+    css`
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    `}
 `;
 
 const ButtonGroup = styled.div`
@@ -48,6 +59,7 @@ const Button = styled.button`
   align-items: center;
   border: none;
   background: none;
+  cursor: pointer;
 `;
 
 function CommentItem({ comment }) {
@@ -58,6 +70,20 @@ function CommentItem({ comment }) {
     textDisplay,
     likeCount,
   } = comment.snippet.topLevelComment.snippet;
+
+  // null , open, close
+  const [openState, setOpenState] = useState(null);
+  const textRef = useRef();
+
+  const isElementCollision = () => {
+    const itemDom = textRef.current.offsetHeight;
+    return itemDom <= 4 * 20;
+  };
+
+  useEffect(() => {
+    const isHidden = isElementCollision();
+    setOpenState(isHidden ? null : 'close');
+  }, []);
 
   return (
     <StyledLi>
@@ -71,7 +97,22 @@ function CommentItem({ comment }) {
           <span>&ensp;{dayjs(publishedAt).fromNow()}</span>
         </ItemHeader>
 
-        <ItemBody dangerouslySetInnerHTML={{ __html: textDisplay }}></ItemBody>
+        <div>
+          <ItemBody
+            ref={textRef}
+            dangerouslySetInnerHTML={{ __html: textDisplay }}
+            $openState={openState}
+          ></ItemBody>
+
+          {openState === 'close' && (
+            <Button onClick={() => setOpenState('open')}>顯示完整內容</Button>
+          )}
+          {openState === 'open' && (
+            <Button onClick={() => setOpenState('close')}>
+              只顯示部分內容
+            </Button>
+          )}
+        </div>
 
         <ButtonGroup>
           <Button>
