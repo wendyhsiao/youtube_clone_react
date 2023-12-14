@@ -36,7 +36,7 @@ function Watch() {
     <WatchLayout>
       <WatchMain>
         <VideoBlock video={items[0]} />
-        <VideoCommentList />
+        <VideoCommentList video={items[0]} />
       </WatchMain>
 
       <WatchSidebar />
