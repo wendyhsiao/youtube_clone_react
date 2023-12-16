@@ -59,7 +59,7 @@ function CommentHeader({ video, comment }) {
       <StyledHeaderMobile>
         <strong>留言 {commaFormat(video.statistics.commentCount)}</strong>
         <CommentText>
-          {comment.snippet.topLevelComment.snippet.textOriginal}
+          {comment?.snippet.topLevelComment.snippet.textOriginal}
         </CommentText>
       </StyledHeaderMobile>
 

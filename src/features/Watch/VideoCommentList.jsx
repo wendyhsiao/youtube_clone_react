@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { Fragment } from 'react';
 import { useComments } from './useComments';
 
 import Spinner from '../../ui/Spinner';
@@ -6,18 +6,18 @@ import CommentHeader from './CommentHeader';
 import CommentItem from './CommentItem';
 
 function VideoCommentList({ video }) {
-  const { isLoading, comments, error } = useComments();
+  const { isLoading, comments, error, fetchNextPage, hasNextPage } =
+    useComments();
+
+  if (!comments?.pages.length) return <p>no data</p>;
+
   console.log('comments', comments);
-
-  if (!comments?.etag) return <p>no data</p>;
-  const { items } = comments ?? [];
-
   const isMobile = window.innerWidth < 768;
 
   if (isMobile)
     return (
       <div>
-        <CommentHeader video={video} comment={items[0]} />
+        <CommentHeader video={video} comment={comments?.pages[0].items[0]} />
       </div>
     );
 
@@ -26,12 +26,16 @@ function VideoCommentList({ video }) {
       <CommentHeader video={video} />
 
       <ul>
-        {items.map((comment) => (
-          <CommentItem comment={comment} key={comment.id} />
+        {comments.pages.map((group, i) => (
+          <Fragment key={i}>
+            {group.items.map((comment) => (
+              <CommentItem comment={comment} key={comment.id} />
+            ))}
+          </Fragment>
         ))}
       </ul>
 
-      <Spinner />
+      {hasNextPage && <Spinner func={fetchNextPage} />}
     </div>
   );
 }

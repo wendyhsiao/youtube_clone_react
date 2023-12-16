@@ -67,12 +67,12 @@ export async function getRelatedVideos(pageParam) {
   return data;
 }
 
-export async function getComments(videoId, nextPageToken) {
+export async function getComments(videoId, pageParam) {
   const searchParams = {
     part: 'snippet,replies',
     videoId: videoId,
     maxResults: 40,
-    pageToken: nextPageToken,
+    pageToken: pageParam,
     key: import.meta.env.VITE_REACT_APP_YT_API_KEY,
   };
   const searchURL = new URLSearchParams(searchParams);
