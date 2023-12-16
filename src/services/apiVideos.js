@@ -50,14 +50,14 @@ export async function getVideo(vidoId) {
   return data;
 }
 
-export async function getRelatedVideos(nextPageToken) {
+export async function getRelatedVideos(pageParam) {
   const searchParams = {
     part: 'snippet',
     type: 'video',
     // relatedToVideoId: id,
     maxResults: 20,
     key: import.meta.env.VITE_REACT_APP_YT_API_KEY,
-    pageToken: nextPageToken,
+    pageToken: pageParam,
   };
 
   const searchURL = new URLSearchParams(searchParams);

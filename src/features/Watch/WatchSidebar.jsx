@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import styled from 'styled-components';
 import { useRelated } from './useRelated';
 
@@ -19,21 +20,24 @@ const SidebarTitle = styled.h3`
 `;
 
 function WatchSidebar() {
-  const { isLoading, videos, error } = useRelated();
+  const { isLoading, videos, error, fetchNextPage, hasNextPage } = useRelated();
 
-  if (!videos?.etag) return <p>no data</p>;
-  const { items } = videos ?? [];
+  if (!videos?.pages.length) return <p>no data</p>;
 
   return (
     <Sidebar>
       <SidebarTitle>即將播放</SidebarTitle>
       <ul>
-        {items.map((video) => (
-          <VideoCard video={video} key={video.etag} />
+        {videos.pages.map((group, i) => (
+          <Fragment key={i}>
+            {group.items.map((video) => (
+              <VideoCard video={video} key={video.etag} />
+            ))}
+          </Fragment>
         ))}
       </ul>
 
-      <Spinner />
+      {hasNextPage && <Spinner func={fetchNextPage} />}
     </Sidebar>
   );
 }

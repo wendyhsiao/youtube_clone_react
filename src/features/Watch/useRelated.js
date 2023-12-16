@@ -1,14 +1,20 @@
-import { useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { getRelatedVideos } from '../../services/apiVideos';
 
-export function useRelated(nextPageToken = '') {
+export function useRelated() {
   const {
     isLoading,
     data: videos,
     error,
-  } = useQuery(['related', nextPageToken], () =>
-    getRelatedVideos(nextPageToken)
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery(
+    ['related'],
+    ({ pageParam = '' }) => getRelatedVideos(pageParam),
+    {
+      getNextPageParam: (lastPage) => lastPage?.nextPageToken || null,
+    }
   );
 
-  return { isLoading, videos, error };
+  return { isLoading, videos, error, fetchNextPage, hasNextPage };
 }
