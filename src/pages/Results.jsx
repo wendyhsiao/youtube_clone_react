@@ -1,8 +1,9 @@
-import { useRef } from 'react';
+import { Fragment } from 'react';
 import styled from 'styled-components';
 
 import { useResults } from '../features/Results/useResults';
 import ResultsCard from '../features/Results/ResultsCard';
+import Spinner from '../ui/Spinner';
 
 const Contents = styled.div`
   margin: 0 auto;
@@ -14,21 +15,22 @@ const Contents = styled.div`
 const List = styled.ul``;
 
 function Results() {
-  const nextPageTokenRef = useRef(null);
-  const { isLoading, videos, error } = useResults();
-  // console.log('videos', videos, videos?.etag);
+  const { isLoading, videos, error, fetchNextPage, hasNextPage } = useResults();
 
-  if (!videos?.etag) return <p>no data</p>;
-  const { items } = videos ?? [];
-  nextPageTokenRef.current = videos.nextPageToken;
+  if (!videos?.pages.length) return <p>no data</p>;
 
   return (
     <Contents>
       <List>
-        {items.map((video) => (
-          <ResultsCard video={video} key={video.etag} />
+        {videos.pages.map((group, i) => (
+          <Fragment key={i}>
+            {group.items.map((video) => (
+              <ResultsCard video={video} key={video.etag} />
+            ))}
+          </Fragment>
         ))}
       </List>
+      {hasNextPage && <Spinner func={fetchNextPage} />}
     </Contents>
   );
 }

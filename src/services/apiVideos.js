@@ -18,7 +18,7 @@ export async function getVideos() {
   return data;
 }
 
-export async function getResultVideos(searchQuery, nextPageToken) {
+export async function getResultVideos({ searchQuery, pageParam }) {
   const searchParams = {
     part: 'snippet',
     q: searchQuery,
@@ -26,7 +26,7 @@ export async function getResultVideos(searchQuery, nextPageToken) {
     // regionCode: 'TW',
     maxResults: 20,
     key: import.meta.env.VITE_REACT_APP_YT_API_KEY,
-    pageToken: nextPageToken,
+    pageToken: pageParam,
   };
 
   const searchURL = new URLSearchParams(searchParams);

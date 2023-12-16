@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import useLoadMore from '../hook/useLoadMore';
 
 const rotate = keyframes`
   to {
@@ -6,7 +7,7 @@ const rotate = keyframes`
   }
 `;
 
-const Spinner = styled.div`
+const StyledSpinner = styled.div`
   margin: 12px auto;
   width: 2rem;
   height: 2rem;
@@ -16,4 +17,11 @@ const Spinner = styled.div`
   animation: ${rotate} 1s linear infinite;
 `;
 
+function Spinner({ func }) {
+  const { domRef } = useLoadMore({
+    fetchApi: func,
+  });
+
+  return <StyledSpinner ref={domRef} />;
+}
 export default Spinner;
