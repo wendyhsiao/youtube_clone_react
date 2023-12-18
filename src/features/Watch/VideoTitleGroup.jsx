@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { MEDIA_QUERY_MD } from '../../utils/constants';
 import { countFormat } from '../../utils/helpers';
 import dayjs from 'dayjs';
+import BottomSheets from '../../ui/BottomSheets';
 
 const StyledTitleGroupMobile = styled.div`
   padding: 0 12px 9px;
@@ -41,7 +42,14 @@ function VideoTitleGroup({ video, titleGroupRef }) {
           觀看次數：{countFormat(video.statistics.viewCount)}次 ·{' '}
           {dayjs(video.snippet.publishedAt).fromNow()}
         </span>
-        <ReadMoreSpan>...更多內容</ReadMoreSpan>
+        <BottomSheets>
+          <BottomSheets.Open opens="description">
+            <ReadMoreSpan>...更多內容</ReadMoreSpan>
+          </BottomSheets.Open>
+          <BottomSheets.Window name="description">
+            description
+          </BottomSheets.Window>
+        </BottomSheets>
       </StyledTitleGroupMobile>
 
       <StyledTitleGroup ref={titleGroupRef}>
