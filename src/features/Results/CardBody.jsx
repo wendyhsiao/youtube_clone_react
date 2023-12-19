@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 
 import { MEDIA_QUERY_MD } from '../../utils/constants';
 import MoreIcon from '../../assets/icons/more.svg?react';
+import Avatar from '../../ui/Avatar';
 
 const StyledCardBody = styled.div`
   display: flex;
@@ -16,37 +17,17 @@ const StyledCardBody = styled.div`
   }
 `;
 
-const Avatar = styled.div`
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  margin-right: 12px;
-  border-radius: 100%;
-  background-color: #f3f3f3;
-  overflow: hidden;
-
+const AvatarPC = styled(Avatar)`
   ${MEDIA_QUERY_MD} {
     display: none;
   }
 `;
 
-const AvatarMobile = styled.span`
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  margin-right: 12px;
-  border-radius: 100%;
-  background-color: #f3f3f3;
-  overflow: hidden;
+const AvatarMobile = styled(Avatar)`
   display: none;
   ${MEDIA_QUERY_MD} {
     display: inline-block;
   }
-`;
-
-const AvatarImg = styled.img`
-  height: 100%;
-  object-fit: cover;
 `;
 
 const TextGroup = styled.div`
@@ -66,12 +47,16 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledTitle = styled.h3`
-  font-weight: inherit;
+  font-weight: 500;
   text-align: left;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  ${MEDIA_QUERY_MD} {
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+  }
 `;
 
 const Button = styled.button`
@@ -81,6 +66,7 @@ const Button = styled.button`
 
 const Channel = styled.div`
   display: none;
+  padding: 12px 0;
   ${MEDIA_QUERY_MD} {
     display: flex;
   }
@@ -102,9 +88,7 @@ const Description = styled.div`
 function CardBody({ video }) {
   return (
     <StyledCardBody>
-      <Avatar>
-        <AvatarImg src={video.snippet.thumbnails.default.url} />
-      </Avatar>
+      <AvatarPC url={video.snippet.thumbnails.default.url} />
 
       <TextGroup>
         <StyledLink>
@@ -122,9 +106,7 @@ function CardBody({ video }) {
       </TextGroup>
 
       <Channel>
-        <AvatarMobile>
-          <AvatarImg src={video.snippet.thumbnails.default.url} />
-        </AvatarMobile>
+        <AvatarMobile url={video.snippet.thumbnails.default.url} size="24px" />
         <span>{video.snippet.channelTitle}</span>
       </Channel>
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD } from '../../utils/constants';
 import ChannelButtonGroup from './ChannelButtonGroup';
+import Avatar from '../../ui/Avatar';
 
 const StyledVideoChannel = styled.div`
   padding: 0 12px;
@@ -26,21 +27,6 @@ const Intro = styled.div`
   display: flex;
 `;
 
-const Avatar = styled.div`
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  margin-right: 12px;
-  border-radius: 100%;
-  background-color: #f3f3f3;
-  overflow: hidden;
-`;
-
-const AvatarImg = styled.img`
-  height: 100%;
-  object-fit: cover;
-`;
-
 const Button = styled.button`
   margin-left: 0.5rem;
   padding: 0 16px;
@@ -55,9 +41,7 @@ function VideoChannel({ video }) {
     <StyledVideoChannel>
       <ChannelIntro>
         <Intro>
-          <Avatar>
-            <AvatarImg src={video.snippet.thumbnails?.default?.url} />
-          </Avatar>
+          <Avatar url={video.snippet.thumbnails?.default?.url} />
 
           <div>
             <h3>{video.snippet.channelTitle}</h3>

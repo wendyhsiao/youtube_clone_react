@@ -2,29 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import dayjs from 'dayjs';
 
+import { MEDIA_QUERY_MD } from '../../utils/constants';
 import LikeIcon from '../../assets/icons/like.svg?react';
 import DislikeIcon from '../../assets/icons/dislike.svg?react';
 import CommentIcon from '../../assets/icons/comment.svg?react';
-import { MEDIA_QUERY_MD } from '../../utils/constants';
+import Avatar from '../../ui/Avatar';
 
 const StyledLi = styled.li`
   display: flex;
   margin-bottom: 16px;
-`;
-
-const Avatar = styled.div`
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  margin-right: 12px;
-  border-radius: 100%;
-  background-color: #f3f3f3;
-  overflow: hidden;
-`;
-
-const AvatarImg = styled.img`
-  height: 100%;
-  object-fit: cover;
 `;
 
 const CommentItemText = styled.div`
@@ -93,9 +79,7 @@ function CommentItem({ comment }) {
 
   return (
     <StyledLi>
-      <Avatar>
-        <AvatarImg src={authorProfileImageUrl} />
-      </Avatar>
+      <Avatar url={authorProfileImageUrl} />
 
       <CommentItemText>
         <ItemHeader>

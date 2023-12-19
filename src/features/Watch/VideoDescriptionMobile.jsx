@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import dayjs from 'dayjs';
 
 import { MEDIA_QUERY_MD } from '../../utils/constants';
 import {
@@ -9,6 +8,7 @@ import {
   descriptionFormat,
   fetchYear,
 } from '../../utils/helpers';
+import Avatar from '../../ui/Avatar';
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,26 +60,6 @@ const Channel = styled.div`
   height: 48px;
 `;
 
-const Avatar = styled.div`
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  margin-right: 12px;
-  border-radius: 100%;
-  background-color: #f3f3f3;
-  overflow: hidden;
-
-  ${MEDIA_QUERY_MD} {
-    width: 40px;
-    height: 40px;
-  }
-`;
-
-const AvatarImg = styled.img`
-  height: 100%;
-  object-fit: cover;
-`;
-
 const Information = styled.div`
   display: flex;
   justify-content: space-around;
@@ -114,9 +94,7 @@ function VideoDescription({ video }) {
     <div ref={goTopRef}>
       <Title>{video.snippet.title}</Title>
       <Channel>
-        <Avatar>
-          <AvatarImg src={video.snippet.thumbnails.default.url} />
-        </Avatar>
+        <Avatar url={video.snippet.thumbnails.default.url} size="24px" />
         <span>{video.snippet.channelTitle}</span>
       </Channel>
       <Information>

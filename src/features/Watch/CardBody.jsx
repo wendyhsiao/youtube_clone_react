@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 
 import { MEDIA_QUERY_MD } from '../../utils/constants';
+import Avatar from '../../ui/Avatar';
 import MoreIcon from '../../assets/icons/more.svg?react';
 
 const StyledCardBody = styled.div`
@@ -16,23 +17,10 @@ const StyledCardBody = styled.div`
   }
 `;
 
-const Avatar = styled.div`
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  margin-right: 12px;
-  border-radius: 100%;
-  background-color: #f3f3f3;
-  overflow: hidden;
-
+const AvatarPC = styled(Avatar)`
   ${MEDIA_QUERY_MD} {
     display: none;
   }
-`;
-
-const AvatarImg = styled.img`
-  height: 100%;
-  object-fit: cover;
 `;
 
 const TextGroup = styled.div`
@@ -70,9 +58,7 @@ const ChannelTitleMobile = styled.span``;
 function CardBody({ video }) {
   return (
     <StyledCardBody>
-      <Avatar>
-        <AvatarImg src={video.snippet.thumbnails.default.url} />
-      </Avatar>
+      <AvatarPC url={video.snippet.thumbnails.default.url} />
 
       <TextGroup>
         <StyledLink>

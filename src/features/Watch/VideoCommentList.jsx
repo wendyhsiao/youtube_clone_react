@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
 import { useComments } from './useComments';
 
-import Spinner from '../../ui/Spinner';
 import CommentHeader from './CommentHeader';
-import CommentItem from './CommentItem';
+import CommentHeaderMobile from './CommentHeaderMobile';
+import CommentList from './CommentList';
+import BottomSheets from '../../ui/BottomSheets';
 
 function VideoCommentList({ video }) {
   const { isLoading, comments, error, fetchNextPage, hasNextPage } =
@@ -15,31 +15,30 @@ function VideoCommentList({ video }) {
 
   if (isMobile)
     return (
-      <div>
-        <CommentHeader
-          video={video}
-          comments={comments}
-          hasNextPage={hasNextPage}
-          fetchNextPage={fetchNextPage}
-        />
-      </div>
+      <BottomSheets>
+        <BottomSheets.Open opens="comments">
+          <CommentHeaderMobile video={video} comments={comments} />
+        </BottomSheets.Open>
+
+        <BottomSheets.Window name="comments" title="留言">
+          <CommentList
+            comments={comments}
+            hasNextPage={hasNextPage}
+            fetchNextPage={fetchNextPage}
+          />
+        </BottomSheets.Window>
+      </BottomSheets>
     );
 
   return (
     <div>
       <CommentHeader video={video} />
 
-      <ul>
-        {comments.pages.map((group, i) => (
-          <Fragment key={i}>
-            {group.items.map((comment) => (
-              <CommentItem comment={comment} key={comment.id} />
-            ))}
-          </Fragment>
-        ))}
-      </ul>
-
-      {hasNextPage && <Spinner func={fetchNextPage} />}
+      <CommentList
+        comments={comments}
+        hasNextPage={hasNextPage}
+        fetchNextPage={fetchNextPage}
+      />
     </div>
   );
 }
