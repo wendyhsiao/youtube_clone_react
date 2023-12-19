@@ -6,21 +6,31 @@ import Avatar from '../../ui/Avatar';
 
 const StyledHeader = styled.div`
   display: none;
+  margin: 24px 0 32px;
 
   ${MEDIA_QUERY_MD} {
     display: block;
   }
 `;
 
+const CommentText = styled.strong`
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+`;
+
 const CommentBlock = styled.div`
   display: flex;
+  margin-top: 24px;
 `;
 
 function CommentHeader({ video }) {
   return (
     <StyledHeader>
       <div>
-        <strong>{commaFormat(video.statistics.commentCount)} 則留言</strong>
+        <CommentText>
+          {commaFormat(video.statistics.commentCount)} 則留言
+        </CommentText>
       </div>
 
       <CommentBlock>

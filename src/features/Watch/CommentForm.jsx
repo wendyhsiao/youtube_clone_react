@@ -6,6 +6,8 @@ const StyledForm = styled.form`
 `;
 const FormText = styled.textarea`
   width: 100%;
+  min-height: 20px;
+  padding: 0 0 3px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   resize: none;
@@ -38,7 +40,11 @@ function CommentForm() {
 
   return (
     <StyledForm>
-      <FormText rows="1" onSelect={() => setIsOpen(true)}></FormText>
+      <FormText
+        rows="1"
+        onSelect={() => setIsOpen(true)}
+        placeholder="發表留言"
+      ></FormText>
 
       {isOpen && (
         <ButtonGroup>
