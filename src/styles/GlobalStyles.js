@@ -23,6 +23,15 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  h2 {
+    font-size: 1.125rem;
+    /* line-height: 1.625rem; */
+  }
+
+  h3 {
+    font-size: 0.875rem;
+  }
+
   blockquote,
   dl,
   dd,

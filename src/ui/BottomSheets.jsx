@@ -23,14 +23,20 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalHeader = styled.div`
+  padding: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+  font-weight: 700;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const ModalBody = styled.div`
   flex-grow: 1;
+  padding: 12px;
+  overflow-y: scroll;
 `;
 
 const ModalContext = createContext();
@@ -54,7 +60,7 @@ function Open({ children, opens: opensWindowName }) {
   return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
-function Window({ children, name }) {
+function Window({ children, name, title }) {
   const { openName, close } = useContext(ModalContext);
 
   if (name !== openName) return null;
@@ -63,7 +69,7 @@ function Window({ children, name }) {
     <Modal>
       <ModalWrapper>
         <ModalHeader>
-          Title
+          {title}
           <CloseIcon onClick={close} />
         </ModalHeader>
 

@@ -3,6 +3,7 @@ import { MEDIA_QUERY_MD } from '../../utils/constants';
 import { countFormat } from '../../utils/helpers';
 import dayjs from 'dayjs';
 import BottomSheets from '../../ui/BottomSheets';
+import VideoDescriptionMobile from './VideoDescriptionMobile';
 
 const StyledTitleGroupMobile = styled.div`
   padding: 0 12px 9px;
@@ -46,8 +47,8 @@ function VideoTitleGroup({ video, titleGroupRef }) {
           <BottomSheets.Open opens="description">
             <ReadMoreSpan>...更多內容</ReadMoreSpan>
           </BottomSheets.Open>
-          <BottomSheets.Window name="description">
-            description
+          <BottomSheets.Window name="description" title="說明">
+            <VideoDescriptionMobile video={video} />
           </BottomSheets.Window>
         </BottomSheets>
       </StyledTitleGroupMobile>
