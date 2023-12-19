@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import LikeIcon from '../../assets/icons/like.svg?react';
 import DislikeIcon from '../../assets/icons/dislike.svg?react';
 import CommentIcon from '../../assets/icons/comment.svg?react';
+import { MEDIA_QUERY_MD } from '../../utils/constants';
 
 const StyledLi = styled.li`
   display: flex;
@@ -32,6 +33,11 @@ const CommentItemText = styled.div`
 
 const ItemHeader = styled.div`
   display: flex;
+  justify-content: space-between;
+
+  ${MEDIA_QUERY_MD} {
+    justify-content: flex-start;
+  }
 `;
 
 const ItemBody = styled.p`

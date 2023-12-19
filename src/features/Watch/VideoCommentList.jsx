@@ -11,13 +11,17 @@ function VideoCommentList({ video }) {
 
   if (!comments?.pages.length) return <p>no data</p>;
 
-  console.log('comments', comments);
   const isMobile = window.innerWidth < 768;
 
   if (isMobile)
     return (
       <div>
-        <CommentHeader video={video} comment={comments?.pages[0].items[0]} />
+        <CommentHeader
+          video={video}
+          comments={comments}
+          hasNextPage={hasNextPage}
+          fetchNextPage={fetchNextPage}
+        />
       </div>
     );
 

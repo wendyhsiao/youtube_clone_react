@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { MEDIA_QUERY_MD } from '../../utils/constants';
 import { commaFormat } from '../../utils/helpers';
 import CommentForm from './CommentForm';
+import BottomSheets from '../../ui/BottomSheets';
+import { Fragment } from 'react';
+import CommentItem from './CommentItem';
+import Spinner from '../../ui/Spinner';
 
 const StyledHeaderMobile = styled.div`
   margin: 16px;
@@ -53,15 +57,34 @@ const CommentText = styled.p`
   -webkit-line-clamp: 2;
 `;
 
-function CommentHeader({ video, comment }) {
+function CommentHeader({ video, comments, hasNextPage, fetchNextPage }) {
+  const comment = comments?.pages[0].items[0];
   return (
     <>
-      <StyledHeaderMobile>
-        <strong>留言 {commaFormat(video.statistics.commentCount)}</strong>
-        <CommentText>
-          {comment?.snippet.topLevelComment.snippet.textOriginal}
-        </CommentText>
-      </StyledHeaderMobile>
+      <BottomSheets>
+        <BottomSheets.Open opens="comments">
+          <StyledHeaderMobile>
+            <strong>留言 {commaFormat(video.statistics.commentCount)}</strong>
+            <CommentText>
+              {comment?.snippet.topLevelComment.snippet.textOriginal}
+            </CommentText>
+          </StyledHeaderMobile>
+        </BottomSheets.Open>
+
+        <BottomSheets.Window name="comments" title="留言">
+          <ul>
+            {comments.pages.map((group, i) => (
+              <Fragment key={i}>
+                {group.items.map((comment) => (
+                  <CommentItem comment={comment} key={comment.id} />
+                ))}
+              </Fragment>
+            ))}
+          </ul>
+
+          {hasNextPage && <Spinner func={fetchNextPage} />}
+        </BottomSheets.Window>
+      </BottomSheets>
 
       <StyledHeader>
         <div>
