@@ -60,4 +60,8 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: inherit;
   }
+
+  button {
+    cursor: pointer;
+  }
 `;
