@@ -30,12 +30,13 @@ const StyledLink = styled(Link)`
   flex-direction: column;
   align-items: flex-start;
   flex: 1 1 auto;
+  line-height: 1.25rem;
 `;
 
 const StyledTitle = styled.h3`
-  /* font-size: 1.4rem; */
-  /* line-height: 1.25rem; */
-  font-weight: inherit;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 500;
   text-align: left;
   overflow: hidden;
   display: -webkit-box;
@@ -59,9 +60,9 @@ function CardBody({ video }) {
 
       <StyledLink to={`/watch?v=${video.id}`}>
         <StyledTitle>{title}</StyledTitle>
-        <div>{channelTitle}</div>
+        <span>{channelTitle}</span>
         <span>
-          觀看次數：{countFormat(video.statistics.viewCount)}次 •
+          觀看次數：{countFormat(video.statistics.viewCount)}次 •{' '}
           {dayjs(publishedAt).fromNow()}
         </span>
       </StyledLink>
