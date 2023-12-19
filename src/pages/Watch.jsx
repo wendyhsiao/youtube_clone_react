@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useWatch } from '../features/Watch/useWatch';
 import { MEDIA_QUERY_MD } from '../utils/constants';
 import VideoBlock from '../features/Watch/VideoBlock';
-import VideoCommentList from '../features/Watch/VideoCommentList';
+import VideoCommentBlock from '../features/Watch/VideoCommentBlock';
 import WatchSidebar from '../features/Watch/WatchSidebar';
 
 const WatchLayout = styled.div`
@@ -36,7 +36,7 @@ function Watch() {
     <WatchLayout>
       <WatchMain>
         <VideoBlock video={items[0]} />
-        <VideoCommentList video={items[0]} />
+        <VideoCommentBlock video={items[0]} />
       </WatchMain>
 
       <WatchSidebar />

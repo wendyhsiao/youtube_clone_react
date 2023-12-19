@@ -5,7 +5,7 @@ import CommentHeaderMobile from './CommentHeaderMobile';
 import CommentList from './CommentList';
 import BottomSheets from '../../ui/BottomSheets';
 
-function VideoCommentList({ video }) {
+function VideoCommentBlock({ video }) {
   const { isLoading, comments, error, fetchNextPage, hasNextPage } =
     useComments();
 
@@ -43,4 +43,4 @@ function VideoCommentList({ video }) {
   );
 }
 
-export default VideoCommentList;
+export default VideoCommentBlock;
