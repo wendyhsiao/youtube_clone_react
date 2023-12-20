@@ -52,7 +52,9 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+  line-height: 1.625rem;
+`;
 
 const Channel = styled.div`
   display: flex;

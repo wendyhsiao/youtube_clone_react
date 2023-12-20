@@ -20,6 +20,7 @@ const CommentItemText = styled.div`
 const ItemHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2px;
 
   ${MEDIA_QUERY_MD} {
     justify-content: flex-start;
@@ -44,6 +45,7 @@ const ItemBody = styled.p`
 const ButtonGroup = styled.div`
   display: flex;
   align-items: center;
+  margin: 4px;
 `;
 
 const Button = styled.button`

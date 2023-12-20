@@ -23,6 +23,10 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  h1 {
+    font-size: 1.25rem;
+  }
+
   h2 {
     font-size: 1.125rem;
     /* line-height: 1.625rem; */

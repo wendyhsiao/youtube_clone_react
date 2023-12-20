@@ -6,7 +6,7 @@ import BottomSheets from '../../ui/BottomSheets';
 import VideoDescriptionMobile from './VideoDescriptionMobile';
 
 const StyledTitleGroupMobile = styled.div`
-  padding: 0 12px 9px;
+  padding: 16px 12px 9px;
   /* display: flex;
   justify-content: space-between; */
 
@@ -16,6 +16,7 @@ const StyledTitleGroupMobile = styled.div`
 `;
 
 const StyledTitleGroup = styled.div`
+  margin-top: 12px;
   padding: 0 12px 9px;
   display: none;
 
@@ -27,6 +28,7 @@ const StyledTitleGroup = styled.div`
 
 const StyledTitle = styled.h2`
   padding-bottom: 4px;
+  line-height: 1.625rem;
 `;
 
 const ReadMoreSpan = styled.span`
