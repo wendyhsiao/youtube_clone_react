@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import { GlobalStyle } from './styles/GlobalStyles';
 import Root from './ui/Root';
