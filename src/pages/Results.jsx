@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { useResults } from '../features/Results/useResults';
 import ResultsCard from '../features/Results/ResultsCard';
+import Loader from '../features/Results/Loader';
 import Spinner from '../ui/Spinner';
 
 const Contents = styled.div`
@@ -17,6 +18,12 @@ const List = styled.ul``;
 function Results() {
   const { isLoading, videos, error, fetchNextPage, hasNextPage } = useResults();
 
+  if (isLoading)
+    return (
+      <Contents>
+        <Loader />
+      </Contents>
+    );
   if (!videos?.pages.length) return <p>no data</p>;
 
   return (
