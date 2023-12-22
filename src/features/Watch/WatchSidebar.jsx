@@ -5,6 +5,7 @@ import { useRelated } from './useRelated';
 import { MEDIA_QUERY_MD } from '../../utils/constants';
 import VideoCard from './VideoCard';
 import Spinner from '../../ui/Spinner';
+import SidebarLoader from './SidebarLoader';
 
 const Sidebar = styled.aside`
   padding: 0 12px;
@@ -22,6 +23,13 @@ const SidebarTitle = styled.h3`
 function WatchSidebar() {
   const { isLoading, videos, error, fetchNextPage, hasNextPage } = useRelated();
 
+  if (isLoading)
+    return (
+      <Sidebar>
+        <SidebarTitle>即將播放</SidebarTitle>
+        <SidebarLoader />
+      </Sidebar>
+    );
   if (!videos?.pages.length) return <p>no data</p>;
 
   return (
