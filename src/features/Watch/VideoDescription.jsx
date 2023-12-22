@@ -59,13 +59,13 @@ function VideoDescription({ video, titleGroupRef }) {
   }
 
   return (
-    <Wrapper isOpen={isOpen}>
+    <Wrapper $isOpen={isOpen}>
       <span>
         觀看次數：{countFormat(video.statistics.viewCount)}次 ·
         {dayjs(video.snippet.publishedAt).fromNow()}
       </span>
       <Description
-        isOpen={isOpen}
+        $isOpen={isOpen}
         dangerouslySetInnerHTML={descriptionFormat(video.snippet.description)}
       ></Description>
       <Button onClick={handleClick}>

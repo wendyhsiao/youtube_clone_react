@@ -17,7 +17,13 @@ import PageNotFound from './pages/PageNotFound';
 dayjs.locale('zh-tw');
 dayjs.extend(relativeTime);
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // default: true
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
