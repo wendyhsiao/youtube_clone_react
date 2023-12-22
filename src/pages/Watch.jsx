@@ -4,6 +4,7 @@ import { MEDIA_QUERY_MD } from '../utils/constants';
 import VideoBlock from '../features/Watch/VideoBlock';
 import VideoCommentBlock from '../features/Watch/VideoCommentBlock';
 import WatchSidebar from '../features/Watch/WatchSidebar';
+import VideoLoader from '../features/Watch/VideoLoader';
 
 const WatchLayout = styled.div`
   margin: 0 auto;
@@ -30,13 +31,19 @@ function Watch() {
   const { isLoading, video, error } = useWatch();
 
   const { items } = video ?? [];
-  if (!video?.etag) return <p>no data</p>;
+  if (!isLoading && !video?.etag) return <p>no data</p>;
 
   return (
     <WatchLayout>
       <WatchMain>
-        <VideoBlock video={items[0]} />
-        <VideoCommentBlock video={items[0]} />
+        {isLoading ? (
+          <VideoLoader />
+        ) : (
+          <>
+            <VideoBlock video={items[0]} />
+            <VideoCommentBlock video={items[0]} />
+          </>
+        )}
       </WatchMain>
 
       <WatchSidebar />
