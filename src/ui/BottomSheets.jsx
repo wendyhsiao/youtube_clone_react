@@ -37,6 +37,7 @@ const ModalBody = styled.div`
   flex-grow: 1;
   padding: 12px;
   overflow-y: scroll;
+  overscroll-behavior: auto contain;
 `;
 
 const ModalContext = createContext();
@@ -44,8 +45,15 @@ const ModalContext = createContext();
 function BottomSheets({ children }) {
   const [openName, setOpenName] = useState();
 
-  const close = () => setOpenName('');
-  const open = setOpenName;
+  const close = () => {
+    setOpenName('');
+    document.body.classList.remove('fixed');
+  };
+
+  const open = (opensWindowName) => {
+    setOpenName(opensWindowName);
+    document.body.classList.add('fixed');
+  };
 
   return (
     <ModalContext.Provider value={{ openName, open, close }}>

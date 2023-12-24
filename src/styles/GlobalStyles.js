@@ -68,4 +68,9 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .fixed {
+    position: fixed;
+    inset: 0;
+  }
 `;

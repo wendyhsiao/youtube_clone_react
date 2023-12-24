@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   border-radius: 12px;
   background-color: #f2f2f2;
   ${(props) =>
-    !props.isOpen &&
+    !props.$isOpen &&
     css`
       height: 104px;
     `}
@@ -34,7 +34,7 @@ const Description = styled.div`
   overflow-wrap: break-word;
 
   ${(props) =>
-    !props.isOpen &&
+    !props.$isOpen &&
     css`
       overflow: hidden;
       display: -webkit-box;
@@ -120,14 +120,14 @@ function VideoDescription({ video }) {
         </InformationItem>
       </Information>
 
-      <Wrapper isOpen={isOpen}>
+      <Wrapper $isOpen={isOpen}>
         {/* <span>
         觀看次數：{countFormat(video.statistics.viewCount)}次 ·
         {dayjs(video.snippet.publishedAt).fromNow()}
       </span> */}
 
         <Description
-          isOpen={isOpen}
+          $isOpen={isOpen}
           dangerouslySetInnerHTML={descriptionFormat(video.snippet.description)}
         ></Description>
         <Button onClick={handleClick}>

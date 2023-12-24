@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   border-radius: 12px;
   background-color: #f2f2f2;
   ${(props) =>
-    !props.isOpen &&
+    !props.$isOpen &&
     css`
       height: 104px;
     `}
@@ -29,7 +29,7 @@ const Description = styled.div`
   overflow-wrap: break-word;
 
   ${(props) =>
-    !props.isOpen &&
+    !props.$isOpen &&
     css`
       overflow: hidden;
       display: -webkit-box;
