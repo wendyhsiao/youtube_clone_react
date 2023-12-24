@@ -23,3 +23,25 @@ export const fetchYear = (str, type) => {
   if (type === 'year') return `${date[0]}年`;
   if (type === 'day') return `${Number(date[1])}月${Number(date[2])}日`;
 };
+
+export const descriptionFormat = (str) => {
+  const regex = /(https|http):\/\/([\w.]+\/?)\S*(?=\s)/g;
+  const urlList = new Set(str.match(regex));
+  urlList.forEach((url) => {
+    const regexUrl = new RegExp(`${url}`, 'g');
+    str = str.replace(regexUrl, `<a href="${url}">${url}</a>`);
+  });
+  // const regex2 = /(?<!\[)#\S+/g; // 選擇 tag，排除色碼 [#ffffff]
+  // const regex2 = new RegExp('([^\[])#\S+', 'g');
+  const regex2 = /([^\[])#\S+/g;
+  const tagList = new Set(str.match(regex2));
+  tagList.forEach((tag) => {
+    const regexTag = new RegExp(`${tag}`, 'g');
+    str = str.replace(
+      regexTag,
+      `<a href="/results?search_query=${encodeURIComponent(tag)}">${tag}</a>`
+    );
+  });
+  str = str.replace(/(\r|\n|\r\n)/g, '<br/>');
+  return { __html: str };
+};

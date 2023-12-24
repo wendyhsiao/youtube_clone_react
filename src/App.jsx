@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import { GlobalStyle } from './styles/GlobalStyles';
 import Root from './ui/Root';
@@ -12,10 +13,17 @@ import Watch from './pages/Watch';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/zh-tw';
+import PageNotFound from './pages/PageNotFound';
 dayjs.locale('zh-tw');
 dayjs.extend(relativeTime);
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // default: true
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -25,6 +33,7 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/results', element: <Results /> },
       { path: '/watch', element: <Watch /> },
+      { path: '*', element: <PageNotFound /> },
     ],
   },
 ]);

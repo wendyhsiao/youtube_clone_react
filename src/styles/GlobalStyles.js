@@ -23,6 +23,19 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    /* line-height: 1.625rem; */
+  }
+
+  h3 {
+    font-size: 0.875rem;
+  }
+
   blockquote,
   dl,
   dd,
@@ -50,5 +63,14 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  .fixed {
+    position: fixed;
+    inset: 0;
   }
 `;

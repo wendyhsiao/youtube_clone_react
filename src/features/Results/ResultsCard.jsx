@@ -1,34 +1,31 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  MEDIA_QUERY_LG,
-  MEDIA_QUERY_MD,
-  MEDIA_QUERY_SM,
-} from '../../utils/constants';
-
+import { MEDIA_QUERY_MD } from '../../utils/constants';
 import CardBody from './CardBody';
 
-const Card = styled.li`
+const StyledLink = styled(Link)`
   width: 100%;
-  padding: 0 0.5rem;
-  flex-shrink: 0;
-  box-sizing: border-box;
+  ${MEDIA_QUERY_MD} {
+    width: 45%;
+    max-width: 360px;
+    flex-shrink: 0;
+  }
+`;
+
+const Card = styled.li`
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   list-style: none;
 
-  ${MEDIA_QUERY_SM} {
-    width: 50%;
-  }
-
   ${MEDIA_QUERY_MD} {
-    width: 33.333333%;
-  }
-
-  ${MEDIA_QUERY_LG} {
-    width: 25%;
+    flex-direction: row;
   }
 `;
 
 const CardTop = styled.div`
+  width: 100%;
   padding-bottom: 56.25%;
   position: relative;
   border-radius: 0.5rem;
@@ -43,18 +40,18 @@ const CardImg = styled.img`
   transform: translateY(-50%);
 `;
 
-function HomeCard({ video }) {
+function ResultsCard({ video }) {
   return (
     <Card>
-      <Link to={`/watch?v=${video.id}`}>
+      <StyledLink to={`/watch?v=${video.id.videoId}`}>
         <CardTop>
           <CardImg src={video.snippet.thumbnails.high.url} />
         </CardTop>
-      </Link>
+      </StyledLink>
 
       <CardBody video={video} />
     </Card>
   );
 }
 
-export default HomeCard;
+export default ResultsCard;
