@@ -15,8 +15,12 @@ const ButtonGroup = styled.div`
   overflow-x: scroll;
   white-space: nowrap;
 
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  /* Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Button = styled.button`
