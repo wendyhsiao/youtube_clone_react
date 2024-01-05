@@ -99,6 +99,18 @@ nvm use v14.xx.x
 
 ## Demo 畫面
 
+### Results 搜尋結果頁面
+
+<img src="/assets/result-pc.png" style="box-shadow:0 4px 6px -1px rgba(0,0,0,.1)" height="300"> <img src="/assets/result-mobile.png" style="box-shadow:0 4px 6px -1px rgba(0,0,0,.1)" height="300">
+
+### Watch 影片頁面
+
+<img src="/assets/watch-pc.png" style="box-shadow:0 4px 6px -1px rgba(0,0,0,.1)" height="300"> <img src="/assets/watch-mobile.png" style="box-shadow:0 4px 6px -1px rgba(0,0,0,.1)" height="300">
+
+#### mobile 影片介紹 ＆ 留言樣式
+
+<img src="/assets/watch-mobile-bottomSheets.gif" style="box-shadow:0 4px 6px -1px rgba(0,0,0,.1)" height="500">
+
 ## Mock API
 
 如需使用假資料，請參考 [Postman Mock Server](https://learning.postman.com/docs/designing-and-developing-your-api/mocking-data/setting-up-mock/#mock-server-quick-start)。
