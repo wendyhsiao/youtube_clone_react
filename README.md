@@ -99,4 +99,18 @@ nvm use v14.xx.x
 
 ## Demo 畫面
 
+## Mock API
 
+如需使用假資料，請參考 [Postman Mock Server](https://learning.postman.com/docs/designing-and-developing-your-api/mocking-data/setting-up-mock/#mock-server-quick-start)。
+
+### 環境變數設定
+
+在.env 檔案，加入 `VITE_REACT_APP_POSTMAN_MOCK_URL`、`VITE_REACT_APP_X_API_KEY` 環境變數
+
+```
+// 輸入你的 mock url
+VITE_REACT_APP_POSTMAN_MOCK_URL=https://<mock-id>.mock.pstmn.io
+
+// 如 mock serve 設為私人才需 x-api-key
+VITE_REACT_APP_X_API_KEY=XXXXX(輸入你的 X_API_KEY)
+```
